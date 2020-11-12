@@ -28,8 +28,13 @@ private:
 	
 
 public:
+	//Default Constructor
+	GPU();
 	//Constructor
 	GPU(string, string, int, double);
+
+	//This needs to be here to overload the << operator for the MenuHandler
+	friend ostream& operator<<(ostream& output, const vector<GPU>& g);
 	
 	//Accessors
 	string getManufacture();

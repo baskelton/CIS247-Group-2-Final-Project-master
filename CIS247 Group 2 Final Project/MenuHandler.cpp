@@ -190,10 +190,11 @@ void addMangSubMenu()
 
 }
 
-Inventory GPU; // to initialize the Inventory class
 
 void addGPUMenu() 
 {
+	Inventory GPU; // to initialize the Inventory class
+
 	string man, mod;
 	int mem;
 	double price;
@@ -208,6 +209,10 @@ void addGPUMenu()
 	cout << "Enter the Price: " << endl;
 	cin >> price;
 	GPU.addGPU(man,mod,mem,price);
+	cout << GPU.GPUvect; //We need a way to display the vector so we can 
+	// see if it's actually being created.
+	
+	
 
 }
 //GPU::GPU(string man, string mod, int mem, double price) {

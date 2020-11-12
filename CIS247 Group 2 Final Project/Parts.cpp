@@ -5,6 +5,7 @@
 
 
 #include "Parts.h"
+#include "InventoryMang.h"
 #include <iostream>
 
 
@@ -12,6 +13,7 @@
 using namespace std;
 
 //Constructor definitions
+GPU::GPU() { manufacture = "Unknown"; model = "Unknown"; memory = 0; price = 0; }
 GPU::GPU(string man, string mod, int mem, double price) {
 	manufacture = man;
 	model = mod;
