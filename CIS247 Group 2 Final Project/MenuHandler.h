@@ -9,13 +9,29 @@
 
 using namespace std;
 
+enum addRemoveOpt{ADD, REMOVE};  //for later use int the add remove menu(makes things easier)
+
 class menuHandler
 {
 private:
 
 public:
-	static void mainMenuC();
-	static void shipCraftingMenu();
+	static void mainMenu();
 };
 
 
+void inventoryMangMenu();
+void viewItemsMenu();
+void addRemoveItemMenu(addRemoveOpt);
+
+void internalPartsMenu();
+void externalPartsMenu();
+void extraPartsMenu();
+
+
+
+void addMangSubMenu();
+void removeMangSubMenu();
+
+void addGPUMenu();
+ 

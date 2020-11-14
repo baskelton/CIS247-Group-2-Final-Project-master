@@ -1,90 +1,280 @@
-//------------------------------------------------------
-//Purpose:  This class will hold Menu methods
-//			for differnt menues used in the program
-//
-//------------------------------------------------------
+/*
+	Purpose:  This class will hold Menu methods
+			  for differnt menues used in the program
 
+			 
+*/
 
 #include "MenuHandler.h"
 #include "Util.h"
+#include "InventoryMang.h"
 #include <iostream>
-#include <vector>
 #include <fstream>
 #include <iomanip>
 
 using namespace std;
 
-//Main Menu
-void menuHandler::mainMenuC()
+//Globally used varables
+string addRemovePath; //add or remove option used in multiple functions
+
+
+//Main Menu -testing(partial)
+void menuHandler::mainMenu()
 {
-	char userChoice;
+	bool exit = false;
+	string input;
+	int userChoice;
 	do
 	{
-		cout << "Main Menu: " << endl;
-		cout << "1)Enter Mineral Prices" << endl;
-		cout << "2)Craft a ship" << endl;
-		cout << "3)View Mineral Prices" << endl;
-		cout << "4)Exit" << endl;
-		cout << "Please enter you choice: ";
+		do
+		{
+			cout << "Main Menu: " << endl;
+			cout << "1)Menu Opt 1" << endl;
+			cout << "2)Menu Opt 2" << endl;
+			cout << "3)Menu Opt 3" << endl;
+			cout << "4)Menu Opt 4" << endl;
+			cout << "5)Inv Management" << endl;
+			cout << "6)Exit" << endl;
+			cout << "Please enter you choice: ";
+			cin >> userChoice;		
+			
+		} while (!checkValidInput(1, 7, userChoice));
+	
+		switch (userChoice)
+		{
+		case 1 :
+			system("cls");
+			//code to submenu
+			break;
+		case 2:
+			system("cls");
+			//code to submenu
+			break;
+		case 3:
+			system("cls");
+			//code to submenu
+			break;
+		case 4:
+			system("cls");
+			//code to submenu
+			break;
+		case 5:
+			system("cls");
+			inventoryMangMenu();
+			break;
+		case 6:
+			system("cls");
+			exit = true;
+			break;
+		}
+	} while (!exit);
+}
+
+//Inventory Management Menu -testing(partial)
+void inventoryMangMenu() 
+{
+	int userChoice;
+	bool exit = false;
+	do
+	{
+		do
+		{
+			cout << "Inventory Managment Menu:" << endl;
+			cout << "1)Add Item(testing)" << endl;
+			cout << "2)Remove Item(testing)" << endl;
+			cout << "3)View all items(testing)" << endl;
+			cout << "4)Return to main menu(testing)" << endl;
+			cin >> userChoice;
+			cin.ignore();
+			userChoice = toupper(userChoice);
+		} while (!checkValidInput(1, 4, userChoice));
+		
+		switch (userChoice)
+		{
+		case 1:
+			system("cls");
+			addRemoveItemMenu(ADD);
+			break;
+		case 2:
+			system("cls");
+			addRemoveItemMenu(REMOVE);
+			break;
+		case 3:
+			system("cls");
+			viewItemsMenu();
+			break;
+		case 4:
+			system("cls");
+			menuHandler::mainMenu();
+			break;
+		}
+	} while (!exit);
+}
+
+
+
+//Adding and Removing Items Menu -testing(partial)
+void addRemoveItemMenu(addRemoveOpt addRemoveOptInput) 
+{
+	bool exit = false;
+	int userChoice;
+	
+	if (addRemoveOptInput == ADD)
+		addRemovePath = "ADD";
+	else if (addRemoveOptInput == REMOVE)
+		addRemovePath = "Remove";
+	do
+	{	
+		cout << "What would you like to do:" << endl;
+		cout << "1)Add an item (testing)" << endl;
+		cout << "2)Remove an item (testing)" << endl;
+		cout << "3)View all (testing)" << endl;
+		cout << "4)Return to Inv menu" << endl;
 		cin >> userChoice;
 		cin.ignore();
 		userChoice = toupper(userChoice);
-		switch (userChoice)
-		{
-		case'1':
-			system("cls");
-			//mineralHandler::GetInstance()->editMinerals();
-			break;
-		case'2':
-			system("cls");
-			//shipCraftingMenu();
-			break;
-		case'3':
-			system("cls");
-			//mineralHandler::GetInstance()->viewMinerals();
-			break;
-		case'4':
-			system("cls");
-			break;
-		default:
-			cout << "Please enter a valid choice!" << endl;
-		}
-	} while (userChoice != '4');
+	} while (!checkValidInput(1, 4, userChoice));
+	switch (userChoice)
+	{
+	case 1:
+		system("cls");
+		addMangSubMenu();
+		break;
+	case 2:
+		system("cls");
+		//submenu;
+		break;
+	case 3:
+		system("cls");
+		//code to submenu
+		break;
+	case 4:
+		system("cls");
+		inventoryMangMenu();
+		break;
+	}
+} 
+
+//Adding Items (Managment) submenu(testing)
+void addMangSubMenu() 
+{
+	int userChoice;
+	do
+	{
+		cout << "Adding an item Submenu" << endl;
+		cout << "What woudld you like to add?" << endl;
+		cout << "1)GPU (testing)" << endl;
+		cin >> userChoice;
+		cin.ignore();
+		userChoice = toupper(userChoice);
+	} while (!checkValidInput(1, 4, userChoice));
+	switch (userChoice)
+	{
+	case 1:
+		system("cls");
+		addGPUMenu();
+		break;
+	case 2:
+		system("cls");
+		//submenu;
+		break;
+	case 3:
+		system("cls");
+		//code to submenu
+		break;
+	case 4:
+		system("cls");
+		inventoryMangMenu();
+		break;
+	}
+
 }
 
-//Ship Crafting Options
-void menuHandler::shipCraftingMenu()
+
+void addGPUMenu() 
+{
+	Inventory GPU; // to initialize the Inventory class
+
+	string man, mod;
+	int mem;
+	double price;
+	
+	cin.ignore();
+	cout << "Enter the Manufacture: " << endl;
+	getline(cin, man);
+	cout << "Enter the Model:" << endl;
+	getline(cin, mod);
+	cout << "Enter the amount of memory: " << endl;
+	cin >> mem;
+	cout << "Enter the Price: " << endl;
+	cin >> price;
+	GPU.addGPU(man,mod,mem,price);
+	cout << GPU.GPUvect; //We need a way to display the vector so we can 
+	// see if it's actually being created.
+	
+	
+
+}
+//GPU::GPU(string man, string mod, int mem, double price) {
+//	manufacture = man;
+//	model = mod;
+//	memory = mem;
+//	price = price;
+//}
+
+
+//Menus for later use?
+
+//Viewing Items Menu -testing
+void viewItemsMenu() {
+
+}
+//Internal Parts Menu -testing
+void internalPartsMenu()
 {
 	char userChoice;
-	int craftingAmount;
-	cout << "What ship would you like to craft?" << endl;
-	cout << "1)Atron" << endl;
-	cout << "2)Heron" << endl;
-	cout << "3)Venture" << endl;
+	
+	cout << "Internal Parts Menu" << endl;
+	cout << "1)View GPU's" << endl;
+	cout << "2)View CPU's" << endl;
+	cout << "4)View RAM" << endl;
+	cout << "5)View MOBO's" << endl;
+	cout << "6 Back to main menu" << endl;
 	cin >> userChoice;
 	cin.ignore();
-	craftingAmount = Util::CheckValidValue<int>("How many would you like to make? ", 1);
 	userChoice = toupper(userChoice);
 
-	long double totalCost = 0;
-	cout << "Cost to craft is: " << endl;
 	switch (userChoice)
 	{
 	case '1':
-		//totalCost = craftingAmount * crafting::atronCost();
-		//cout << fixed << setprecision(2) << totalCost << " isk" << endl;
+		//code to submenu
 		break;
 	case '2':
-		//totalCost = craftingAmount * crafting::heronCost();
-		//cout << fixed << setprecision(2) << totalCost << " isk" << endl;
+		//code to submenu
 		break;
 	case '3':
-		//totalCost = craftingAmount * crafting::ventureCost();
-		//cout << fixed << setprecision(2) << totalCost << " isk" << endl;
+		//code to submenu
+		break;
+	case '4':
+		//code to submenu
+		break;
+	case '5':
+		//code to submenu
+		break;
+	case '6':
+		system("cls");
 		break;
 	default:
 		cout << "Please enter a valid choice!" << endl;
 		break;
 	}
 	cout << endl;
+}
+//External Parts Menu -testing
+void externalPartsMenu() {
+
+}
+//Extra Parts Menu -testing
+void extraPartsMenu() {
+
 }

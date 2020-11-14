@@ -24,13 +24,10 @@
     <ClCompile Include="Util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InternalParts.cpp">
+    <ClCompile Include="InventoryMang.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ExternalParts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ExtraParts.cpp">
+    <ClCompile Include="Parts.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,13 +38,10 @@
     <ClInclude Include="Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InternalParts.h">
+    <ClInclude Include="InventoryMang.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ExternalParts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ExtraParts.h">
+    <ClInclude Include="Parts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
